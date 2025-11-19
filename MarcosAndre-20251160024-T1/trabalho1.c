@@ -201,6 +201,11 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
   // calcule os dados e armazene nas três variáveis a seguir
   DiasMesesAnos dma;
 
+ Response rStart, rFinal;
+ rStart = extDate(datainicial);
+ rFinal = extDate(datafinal);
+ 
+
    int current_day , current_month, current_year;
     int count_day = 0, count_month = 0, count_year = 0;
     int final_day, final_month, final_year;
@@ -518,6 +523,7 @@ DataQuebrada quebraData(char data[])
 
   return dq;
 }
+
 
 
 
