@@ -204,19 +204,19 @@ typedef struct Qtd
 
 //para a q3
 
-int howMuchTimes(char str[], char key, int count){
-    
-    int count_times = 0;
+void tratmentString(char str[])
+{
+    int i = 0;
 
-    for (int i = 0; i < count; i++)
+    while (str[i] != '\0')
     {
-        if (key == str[i])
+        if (str[i] >= 'a' && str[i] <= "z")
         {
-            count_times++;
+            str[i] = str[i] - 'a' + 'A';
         }
-    }
 
-    return count_times;
+        i++;
+    }
 }
 
 // questao 4
@@ -341,6 +341,7 @@ int q7(char matriz[8][10], char palavra[5]);
 DataQuebrada quebraData(char data[]);
 
 #endif //MAIN_H
+
 
 
 
