@@ -89,7 +89,16 @@ typedef struct Response
   }
 
   
+bool isLeapYear(int year)
+{
 
+    if (year % 4 == 0 || year % 400 == 0)
+    {
+        return true;
+    }
+
+    return false;
+}
 
 typedef struct DQ
 {
@@ -332,5 +341,6 @@ int q7(char matriz[8][10], char palavra[5]);
 DataQuebrada quebraData(char data[]);
 
 #endif //MAIN_H
+
 
 
