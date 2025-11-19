@@ -163,8 +163,8 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
   Response r;
 
   dma.qtdDias = r.exit[0];
-  dma.qtdMeses = count_dates(datainicial, datafinal)[1];
-  dma.qtdAnos = count_dates(datainicial, datafinal)[2];
+  dma.qtdMeses = r.exit[1];
+  dma.qtdAnos = r.exit[2];
 
   if (q1(datainicial) == 0)
   {
@@ -179,9 +179,51 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
   else
   {
     // verifique se a data final não é menor que a data inicial
-
+     if((current_year > final_year) || 
+        (current_year < final_year && current_month > final_month) || 
+        (current_year < final_year && current_month > final_month && current_day > final_day))
+    {
+        return 0;
+    }
     // calcule a distancia entre as datas
+    while (!(current_day == final_day && current_month == final_month && current_year == final_year))
+    {
+        
+        current_day++;
 
+        if (current_day > daysInMonth(current_month, current_year))
+        {
+            current_day = 1;
+            current_month++;
+
+            if (current_month > 12)
+            {
+                current_month = 1;
+                current_year++;
+            }
+        }
+
+        count_day++;
+        if (count_day > daysInMonth(count_month == 0 ? current_month : count_month,
+                                     count_year == 0 ? current_year : count_year))
+        {
+            count_day = 1;
+            count_month++;
+
+            if (count_month >= 12)
+            {
+                count_month = 1;
+                count_year++;
+            }
+        }
+    }
+
+    response[0] = count_day;
+    response[1] = count_month;
+    response[2] = count_year;
+
+    return response;
+}
     // se tudo der certo
     dma.retorno = 1;
     return dma;
@@ -436,6 +478,7 @@ DataQuebrada quebraData(char data[])
 
   return dq;
 }
+
 
 
 
