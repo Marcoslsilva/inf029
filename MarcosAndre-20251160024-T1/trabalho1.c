@@ -323,7 +323,18 @@ int q6(int numerobase, int numerobusca)
 
 int q7(char matriz[8][10], char palavra[5])
 {
-  int achou;
+  int achou = 0;
+
+    for (size_t i = 0; i < 8; i++) {
+        for (size_t j = 0; j < 10; j++) {
+
+            if (game[i][j] == key[0]) {
+                if (isWordHiddenHere(game, key, i, j, tam))
+                    achou = 1;
+            }
+
+        }
+    }
   return achou;
 }
 
@@ -395,4 +406,5 @@ DataQuebrada quebraData(char data[])
 
   return dq;
 }
+
 
