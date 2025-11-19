@@ -235,6 +235,29 @@ int reversingNumber(int exp, int overExp, int leftover)
     return n;
 }
 
+//questao 6
+
+int pot10(int n) {
+    int r = 1;
+    while (n--) 
+      r *= 10;
+  
+    return r;
+}
+
+int countDigits(int n) {
+    int d = 0;
+    if (n == 0) 
+        return 1;
+        
+        
+    while (n > 0) {
+        d++;
+        n /= 10;
+    }
+    return d;
+}
+
 int somar(int x, int y); //função utilizada para testes
 int fatorial(int x); //função utilizada para testes
 int q1(char data[]);
@@ -247,3 +270,4 @@ int q7(char matriz[8][10], char palavra[5]);
 DataQuebrada quebraData(char data[]);
 
 #endif //MAIN_H
+
