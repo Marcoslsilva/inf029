@@ -271,6 +271,43 @@ int q5(int num)
 int q6(int numerobase, int numerobusca)
 {
   int qtdOcorrencias;
+
+    int digits_key = countDigits(numerobusca);
+    int digits_number = countDigits(numerobase);
+
+    int ak[20], an[20];
+    int temp, i = 0;
+
+    temp = numerobusca;
+    for (int e = pot10(digits_key - 1); e > 0; e /= 10) {
+        ak[i++] = temp / e;
+        temp = temp % e;
+    }
+    int key_len = i;
+ 
+    i = 0;
+    temp = numerobase;
+    for (int e = pot10(digits_number - 1); e > 0; e /= 10) {
+        an[i++] = temp / e;
+        temp = temp % e;
+    }
+    int num_len = i;
+
+    // --- procurar padrão ---
+    int count = 0;
+    for (int start = 0; start <= num_len - key_len; start++) {
+        
+        int match = 1;
+        for (int k = 0; k < key_len; k++) {
+            if (an[start + k] != ak[k]) {
+                match = 0;
+                break;
+            }
+        }
+
+        if (match) 
+         qtdOcorrencias++;
+    }
   return qtdOcorrencias;
 }
 
@@ -358,3 +395,4 @@ DataQuebrada quebraData(char data[])
 
   return dq;
 }
+
