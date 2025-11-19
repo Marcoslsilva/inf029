@@ -105,6 +105,36 @@ int q1(char data[])
 
   // printf("%s\n", data);
 
+ r = extDate(date);
+
+    int day = r.exit[0], month = r.exit[1], year = r.exit[2];
+    bool isLeapYear = false;
+
+    if (day < 1 || day > 31)
+    {
+        datavalida =  0;
+    }
+
+    if (month < 1 || month > 12)
+    {
+        datavalida =  0;
+    }
+
+    if (year < 0 || year > CURRENT_YEAR)
+    {
+        datavalida = 0;
+    }
+
+    if ((month == 2 || month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+    {
+        datavalida =  0;
+    }
+
+    if (day == 29 && month == 2 && isLeapYear == false)
+    {
+        datavalida =  0;
+    }
+
   if (datavalida)
     return 1;
   else
@@ -406,5 +436,6 @@ DataQuebrada quebraData(char data[])
 
   return dq;
 }
+
 
 
