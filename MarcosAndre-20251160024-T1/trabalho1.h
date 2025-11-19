@@ -258,6 +258,68 @@ int countDigits(int n) {
     return d;
 }
 
+//questao 7
+
+int isWordHiddenHere(char game[MAX_TAM][MAX_TAM], char key[], int line, int column, int tam)
+{
+    // percorrendo na linha
+    int k = 1;
+    int final, start;
+
+    
+    for (int j = column + 1; j < MAX_TAM && k < tam; j++) {
+        if (game[line][j] == key[k])
+            k++;
+        else
+            break;
+        
+    }
+    if (k == tam) return 1;
+
+    //percorrendo a coluna
+
+    k = 1;
+    for (int i = line + 1; i < MAX_TAM && k < tam; i++) {
+        if (game[i][column] == key[k])
+            k++;
+        else
+            break;
+    }
+    if (k == tam) return 1;
+
+  //percorrendo a coluna invertida
+
+    k = 1;
+    for (int i = line - 1; i < MAX_TAM && k > 0; i--) {
+        if (game[i][column] == key[k])
+            k++;
+        else
+            break;
+    }
+    if (k == tam) return 1;
+
+    //achando na diagonal
+    k = 1;
+    for (int i = line + 1, j = column + 1; i < MAX_TAM && j < MAX_TAM && k < tam; i++, j++) {
+        if (game[i][j] == key[k])
+            k++;
+        else
+            break;
+    }
+    if (k == tam) return 1;
+    //diagonal invertida ou secundária
+
+    k = 1;
+    for (int i = line + 1, j = column - 1; i < MAX_TAM && j >= 0 && k < tam; i++, j--) {
+        if (game[i][j] == key[k])
+            k++;
+        else
+            break;
+    }
+    if (k == tam) return 1;
+
+    return 0;
+}
 int somar(int x, int y); //função utilizada para testes
 int fatorial(int x); //função utilizada para testes
 int q1(char data[]);
@@ -270,4 +332,5 @@ int q7(char matriz[8][10], char palavra[5]);
 DataQuebrada quebraData(char data[]);
 
 #endif //MAIN_H
+
 
