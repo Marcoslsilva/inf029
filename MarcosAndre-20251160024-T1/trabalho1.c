@@ -96,41 +96,81 @@ int q1(char data[])
 
   // quebrar a string data em strings sDia, sMes, sAno
 
-  DataQuebrada dq;
-  Response r;
+    char day_char[3], month_char[3], year_char[5];
+    int day, month, year;
+    int i = 0;
 
-  dq.iDia = r.exit[0];
-  dq.iMes = r.exit[1];
-  dq.iAno = r.exit[2];
+    hile (date[i] != '\0')
+    {
+
+        if (date[i] == '/')
+        {
+            if (control == 0)
+            {
+                day_char[j] = '\0';
+            }
+            if (control == 1)
+            {
+                month_char[j] = '\0';
+            }
+
+            control++;
+            j = 0;
+        }
+
+        if (control == 0)
+        {
+            day_char[j] = date[i];
+            j++;
+        }
+        if (control == 1 && date[i] != '/')
+        {
+            month_char[j] = date[i];
+            j++;
+        }
+        if (control == 2 && date[i] != '/')
+        {
+            year_char[j] = date[i];
+            j++;
+        }
+
+        i++;
+    }
+
+    day = atoi(day_char);
+    month = atoi(month_char);
+    year = atoi(year_char); 
+ 
+ DataQuebrada dq;
+ 
+
+  dq.iDia = day;
+  dq.iMes = month;
+  dq.iAno = year;
 
   // printf("%s\n", data);
 
- r = extDate(date);
-
-    int day = r.exit[0], month = r.exit[1], year = r.exit[2];
-    bool isLeapYear = false;
-
-    if (day < 1 || day > 31)
+    if (dq.iDia < 1 || dq.iDia > 31)
     {
         datavalida =  0;
     }
 
-    if (month < 1 || month > 12)
+    if (dq.iMes < 1 || dq.iMes > 12)
     {
         datavalida =  0;
     }
 
-    if (year < 0 || year > CURRENT_YEAR)
+    if (dq.iAno < 0 || dq.iAno > CURRENT_YEAR)
     {
         datavalida = 0;
     }
 
-    if ((month == 2 || month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+    if ((dq.iMes == 2 || dq.iMes == 4 || dq.iMes == 6 || dq.iMes == 9 || dq.iMes == 11) && dq.iDia > 30)
     {
         datavalida =  0;
     }
 
-    if (day == 29 && month == 2 && isLeapYear == false)
+    if (day == 29 && month == 2 && isLeapYear(dq.iAno) == false)
     {
         datavalida =  0;
     }
@@ -160,8 +200,9 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
 
   // calcule os dados e armazene nas três variáveis a seguir
   DiasMesesAnos dma;
-  Response r;
 
+  int count day, count_mouth, count_year,
+ 
   dma.qtdDias = r.exit[0];
   dma.qtdMeses = r.exit[1];
   dma.qtdAnos = r.exit[2];
@@ -183,7 +224,8 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
         (current_year < final_year && current_month > final_month) || 
         (current_year < final_year && current_month > final_month && current_day > final_day))
     {
-        return 0;
+     dma.retorno = 4;   
+     return dma;
     }
     // calcule a distancia entre as datas
     while (!(current_day == final_day && current_month == final_month && current_year == final_year))
@@ -478,6 +520,7 @@ DataQuebrada quebraData(char data[])
 
   return dq;
 }
+
 
 
 
