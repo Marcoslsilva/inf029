@@ -201,11 +201,10 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
   // calcule os dados e armazene nas três variáveis a seguir
   DiasMesesAnos dma;
 
-  int count day, count_mouth, count_year,
+   int current_day , current_month, current_year;
+    int count_day = 0, count_month = 0, count_year = 0;
+    int final_day, final_month, final_year;
  
-  dma.qtdDias = r.exit[0];
-  dma.qtdMeses = r.exit[1];
-  dma.qtdAnos = r.exit[2];
 
   if (q1(datainicial) == 0)
   {
@@ -260,13 +259,12 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
         }
     }
 
-    response[0] = count_day;
-    response[1] = count_month;
-    response[2] = count_year;
-
-    return response;
+    
 }
     // se tudo der certo
+    dma.qtdDias = count_day;
+    dma.qtdMonth = count_month;
+    dma.qtdYear = count_year;
     dma.retorno = 1;
     return dma;
   }
@@ -520,6 +518,7 @@ DataQuebrada quebraData(char data[])
 
   return dq;
 }
+
 
 
 
