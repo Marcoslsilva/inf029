@@ -299,9 +299,17 @@ int q3(char *texto, char c, int isCaseSensitive)
     tratmentString(c);
  }
   
+ 
 
+    for (int i = 0; i < count; i++)
+    {
+        if (key == str[i])
+        {
+            qtdOcorrencias++;
+        }
+    }
 
-
+  qtdOcorrencias++;
   return qtdOcorrencias;
 }
 
@@ -536,6 +544,7 @@ DataQuebrada quebraData(char data[])
 
   return dq;
 }
+
 
 
 
