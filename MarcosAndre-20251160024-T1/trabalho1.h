@@ -21,73 +21,6 @@
 // #################################################
 #ifndef TRABALHO1_H
 #define TRABALHO1_H
-
-
-// Para a q1, uma struct que retorna a data quebrada, e a função que quebra as datas
-typedef struct Response
-  {
-    int exit[3];
-  } Response;
-
-  Response extDate(char date[])
-  {
-
-    char day_char[3], month_char[3], year_char[5];
-    int day, month, year;
-    int i = 0;
-    Response response;
-
-    int control = 0;
-    int j = 0;
-
-    while (date[i] != '\0')
-    {
-
-      if (date[i] == '/')
-      {
-        if (control == 0)
-        {
-          day_char[j] = '\0';
-        }
-        if (control == 1)
-        {
-          month_char[j] = '\0';
-        }
-
-        control++;
-        j = 0;
-      }
-
-      if (control == 0)
-      {
-        day_char[j] = date[i];
-        j++;
-      }
-      if (control == 1 && date[i] != '/')
-      {
-        month_char[j] = date[i];
-        j++;
-      }
-      if (control == 2 && date[i] != '/')
-      {
-        year_char[j] = date[i];
-        j++;
-      }
-
-      i++;
-    }
-
-    day = atoi(day_char);
-    month = atoi(month_char);
-    year = atoi(year_char);
-
-    response.exit[0] = day;
-    response.exit[1] = month;
-    response.exit[2] = year;
-
-    return response;
-  }
-
   
 bool isLeapYear(int year)
 {
@@ -123,76 +56,7 @@ int daysInMonth(int month, int year)
     return 31;
 }
 
-int * count_dates(char dateOne[11], char dateTwo[11])
-{
 
-    int current_day, current_month, current_year;
-    int count_day = 0, count_month = 0, count_year = 0;
-    int final_day, final_month, final_year;
-    int * response;
-
-    response = malloc(3 * sizeof(int)); // "Array" que será a saída, resposta, retorno da função
-
-    if (isDateValid(dateOne) == 0 || isDateValid(dateTwo) == 0)
-    {
-        return 0;
-    }
-    
-    Response rTwo = extDate(dateTwo);
-    final_day = rTwo.exit[0];
-    final_month = rTwo.exit[1];
-    final_year = rTwo.exit[2];
-
-    Response rOne = extDate(dateOne);
-    current_day = rOne.exit[0];
-    current_month = rOne.exit[1];
-    current_year = rOne.exit[2];
-
-    if((current_year > final_year) || 
-        (current_year < final_year && current_month > final_month) || 
-        (current_year < final_year && current_month > final_month && current_day > final_day))
-    {
-        return 0;
-    }
-
-    while (!(current_day == final_day && current_month == final_month && current_year == final_year))
-    {
-        
-        current_day++;
-
-        if (current_day > daysInMonth(current_month, current_year))
-        {
-            current_day = 1;
-            current_month++;
-
-            if (current_month > 12)
-            {
-                current_month = 1;
-                current_year++;
-            }
-        }
-
-        count_day++;
-        if (count_day > daysInMonth(count_month == 0 ? current_month : count_month,
-                                     count_year == 0 ? current_year : count_year))
-        {
-            count_day = 1;
-            count_month++;
-
-            if (count_month >= 12)
-            {
-                count_month = 1;
-                count_year++;
-            }
-        }
-    }
-
-    response[0] = count_day;
-    response[1] = count_month;
-    response[2] = count_year;
-
-    return response;
-}
 typedef struct Qtd
 {
     int qtdDias;
@@ -341,6 +205,7 @@ int q7(char matriz[8][10], char palavra[5]);
 DataQuebrada quebraData(char data[]);
 
 #endif //MAIN_H
+
 
 
 
