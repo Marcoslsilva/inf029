@@ -294,6 +294,14 @@ int q3(char *texto, char c, int isCaseSensitive)
 {
   int qtdOcorrencias = -1;
 
+ if(isCaseSensitive != 1){
+    tratmentString(texto);
+    tratmentString(c);
+ }
+  
+
+
+
   return qtdOcorrencias;
 }
 
@@ -528,6 +536,7 @@ DataQuebrada quebraData(char data[])
 
   return dq;
 }
+
 
 
 
