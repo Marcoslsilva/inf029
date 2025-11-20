@@ -202,13 +202,18 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
   DiasMesesAnos dma;
 
  Response rStart, rFinal;
- rStart = extDate(datainicial);
- rFinal = extDate(datafinal);
+ rStart.exit[0] = extDate(datainicial)[0];
+ rStart.exit[1] = extDate(datainicial)[1];
+ rStart.exit[2] = extDate(datainicial)[2];
+ 
+ rFinal.exit[0] = extDate(datafinal)[0];
+ rFinal.exit[1] = extDate(datafinal)[1];
+ rFinal.exit[2] = extDate(datafinal)[2];
  
 
-   int current_day , current_month, current_year;
+   int current_day = rStart.exit[0], current_month =  rStart.exit[1], current_year = rStart.exit[2];
     int count_day = 0, count_month = 0, count_year = 0;
-    int final_day, final_month, final_year;
+    int final_day = rFinal.exit[0], final_month = rFinal.exit[1], final_year = rFinal.exit[2];
  
 
   if (q1(datainicial) == 0)
@@ -523,6 +528,7 @@ DataQuebrada quebraData(char data[])
 
   return dq;
 }
+
 
 
 
