@@ -18,7 +18,7 @@
 #include <string.h>
 
 //renomeie o arquivo do include abaixo para trabalho1.h
-#include "trabalho1.h"
+#include "trabalho1.c"
 
 void testSomar();    //função utilizada para testes
 void testFatorial(); //função utilizada para testes
